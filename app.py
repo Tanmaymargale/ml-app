@@ -42,6 +42,7 @@ shap_values = explainer.shap_values(input_features)
 
 shap.initjs()
 st.subheader("SHAP Explanation")
+
 import streamlit.components.v1 as components
 force_plot_html = shap.force_plot(
     explainer.expected_value[1], 
