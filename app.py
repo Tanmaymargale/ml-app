@@ -44,13 +44,16 @@ shap.initjs()
 st.subheader("SHAP Explanation")
 
 import streamlit.components.v1 as components
-force_plot_html = shap.force_plot(
+force_plot = shap.force_plot(
     explainer.expected_value[1], 
     shap_values[0,:,1], 
     input_features[0], 
     matplotlib=False
 )
-components.html(force_plot_html.html(), height=300)
+shap.save_html("force_plot.html", force_plot)
+with open("force_plot.html", "r") as f:
+    html_data = f.read()
+components.html(html_data, height=300)
 
 # LIME explanation
 explainer_lime = LimeTabularExplainer(
